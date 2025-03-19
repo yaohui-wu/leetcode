@@ -6,11 +6,15 @@ class Solution:
         # Single digit numbers are palindromes.
         if x < 10:
             return True
-        # Reverse the number and check if it is the same as the original.
         reverse = x % 10
-        num = x // 10
-        while num > 0:
+        # Positive numbers ending with 0 cannot be palindromes.
+        if reverse == 0:
+            return False
+        # Reverse half of the number and compare it with the other half.
+        x //= 10
+        while reverse < x:
             reverse *= 10
-            reverse += num % 10
-            num //= 10
-        return reverse == x
+            reverse += x % 10
+            x //= 10
+        # Remove the middle digit if the number has an odd number of digits.
+        return reverse == x or reverse // 10 == x
