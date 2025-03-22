@@ -1,9 +1,9 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        nums_set = set()
+        n = len(nums)
+        # Formula for the sum of first n natural numbers by Gauss.
+        sum = n * (n + 1) // 2
         for i in nums:
-            nums_set.add(i)
-        for i in range(len(nums) + 1):
-            if i not in nums_set:
-                return i
-        return -1
+            sum -= i
+        # The missing number is the remaining sum.
+        return sum
