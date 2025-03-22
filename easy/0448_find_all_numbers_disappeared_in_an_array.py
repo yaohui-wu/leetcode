@@ -1,10 +1,13 @@
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
-        nums_set = set()
+        # Mark the index represented by the current number.
         for i in nums:
-            nums_set.add(i)
+            j = abs(i) - 1
+            if nums[j] > 0:
+                nums[j] = -nums[j]
         disappeared_nums = []
-        for i in range(1, len(nums) + 1):
-            if i not in nums_set:
-                disappeared_nums.append(i)
+        # The indices of the numbers not marked are the disappeared numbers.
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                disappeared_nums.append(i + 1)
         return disappeared_nums
