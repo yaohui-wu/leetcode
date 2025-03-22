@@ -4,6 +4,7 @@ class Solution:
         k = 0
         for i in range(length):
             if nums[i] != val:
-                nums[k] = nums[i]
+                if i != k:
+                    nums[k] = nums[i]
                 k += 1
         return k
