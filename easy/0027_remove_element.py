@@ -1,8 +1,8 @@
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        length = len(nums)
-        k = 0
-        for i in range(length):
+        k = 0 # Size of the array of elements that are not equal to val.
+        for i in range(len(nums)):
+            # Move elements that are not equal to val to the front.
             if nums[i] != val:
                 if i != k:
                     nums[k] = nums[i]
