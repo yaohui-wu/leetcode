@@ -7,13 +7,16 @@ class Solution:
         if length == 0 or length == 1:
             return
         zero = -1
-        found = False
         i = 0
-        while not found and i < length:
+        while zero == -1 and i < length:
             if nums[i] == 0:
-                found = True
                 zero = i
             i += 1
-        if not found:
+        if zero == -1:
             return nums
-        next_zero = -1
+        for i in range(zero + 1, length):
+            num = nums[i]
+            if num != 0:
+                nums[zero] = num
+                nums[i] = 0
+                zero += 1
