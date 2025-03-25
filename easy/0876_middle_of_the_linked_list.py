@@ -5,11 +5,10 @@
 #         self.next = next
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        size = 0
         middle = head
-        while head is not None:
-            size += 1
-            head = head.next
-        for _ in range(size // 2):
-            middle = middle.next
+        while head is not None and head.next is not None:
+            middle = middle.next # Move one step.
+            head = head.next.next # Move two steps.
+        # If length of linked list is odd, middle will be the exact middle.
+        # If length of linked list is even, middle will be the second middle.
         return middle
