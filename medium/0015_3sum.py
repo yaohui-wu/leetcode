@@ -1,20 +1,30 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        solution = []
+        solution_set = [] # Unique triplets that sum to zero.
         nums.sort()
         length = len(nums)
-        if length < 3 or nums[0] > 0:
-            return solution
-        num_to_index = {}
-        for i in range(length):
-            num_to_index[nums[i]] = i
-        i = 0
-        while i < length - 2 and nums[i] <= 0:
+        i = 0 # Fix the first element in the triplet.
+        while i < length:
+            # Skip duplicates for the first element.
+            while 0 < i < length - 1 and nums[i] == nums[i - 1]:
+                i += 1
+            target = -nums[i] # Complement of the first element.
             j = i + 1
-            while j < length - 1:
-                target = -(nums[i] + nums[j])
-                if target in num_to_index and num_to_index[target] > j:
-                    solution.append([target, nums[i], nums[j]])
-                j = num_to_index[nums[j]] + 1
-            i = num_to_index[nums[i]] + 1
-        return solution
+            k = length - 1
+            while j < k:
+                sum = nums[j] + nums[k]
+                # Need a greater sum.
+                if sum < target:
+                    j += 1
+                # Need a lesser sum.
+                elif sum > target:
+                    k -= 1
+                else:
+                    # Found a unique triplet.
+                    solution_set.append([nums[i], nums[j], nums[k]])
+                    j += 1
+                    # Skip duplicates for the second element.
+                    while j < k and nums[j] == nums[j - 1]:
+                        j += 1
+            i += 1
+        return solution_set
