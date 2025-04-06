@@ -1,0 +1,10 @@
+# Ignore everything by default.
+*
+# Check all directories.
+!**/
+# Track .gitignore file.
+!.gitignore
+# Track Python files.
+!*.py
+# Ignore all hidden directories.
+.*/
